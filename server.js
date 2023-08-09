@@ -1,17 +1,7 @@
-const http = require("http");
-const port = 3000;
+import app from "./src/app.js";
 
-const routes = {
-    '/': 'Alura node course',
-    '/books': `Welcome to the book's page`,
-    '/authors': `Welcome to the author's page`
-};
+const port = process.env.PORT || 3000;
 
-const server = http.createServer((req, res) => {
-    res.writeHead(200, {'Content-Type': 'text/plan'});
-    res.end(routes[req.url]);
-});
-
-server.listen(port, () => {
+app.listen(port, () => {
     console.log(`Server listening on port http://localhost:${port}`);
 });
