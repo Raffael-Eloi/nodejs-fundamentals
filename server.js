@@ -7,9 +7,7 @@ const routes = {
     '/authors': `Welcome to the author's page`
 };
 
-
 const server = http.createServer((req, res) => {
-    req.
     res.writeHead(200, {'Content-Type': 'text/plan'});
     res.end(routes[req.url]);
 });
