@@ -3,6 +3,8 @@ import db from "./config/dbConnect.js";
 
 import books from "./models/Book.js";
 
+import routes from "./routes/index.js";
+
 db.on("error", console.log.bind(console, 'Connection error'))
 db.once("open", () => {
     console.log('Successful connection');
@@ -12,15 +14,10 @@ const app = express();
 
 app.use(express.json())
 
-app.get('/', (req, res) => {
-    res.status(200).send('Alura node course');
-});
+routes(app)
+
 
 /* Books */
-
-app.get('/books', async (req, res) => {
-    res.status(200).json(await books.find());
-});
 
 app.post('/books', (req, res) => {
     books.push(req.body);
