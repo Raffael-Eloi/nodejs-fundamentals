@@ -19,17 +19,6 @@ routes(app)
 
 /* Books */
 
-app.post('/books', (req, res) => {
-    books.push(req.body);
-    res.status(201).send("Book successful saved")
-});
-
-app.put('/books/:id', (req, res) => {
-    let bookIndex = getBookIndexById(req.params.id);
-    books[bookIndex].title = req.body.title;
-    res.json(books);
-})
-
 app.delete('/books/:id', (req, res) => {
     let bookIndex = getBookIndexById(req.params.id);
     
