@@ -3,7 +3,7 @@ import books from "./booksRoutes.js";
 
 const routes = (app) => {
     app.route('/').get((req, res) => {
-        res.status(200).send({title: "Alura node course"});
+        res.status(200).send({title: "Node fundamentals"});
     })
 
     app.use(
