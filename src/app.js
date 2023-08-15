@@ -1,13 +1,16 @@
 import express from "express";
+import db from "./config/dbConnect.js";
+
+import books from "./models/Book.js";
+
+db.on("error", console.log.bind(console, 'Connection error'))
+db.once("open", () => {
+    console.log('Successful connection');
+})
 
 const app = express();
 
 app.use(express.json())
-
-const books = [
-    { id: 1, "title": "The lord of the rings" },
-    { id: 2, "title": "Harry Potter" },
-];
 
 app.get('/', (req, res) => {
     res.status(200).send('Alura node course');
@@ -15,8 +18,8 @@ app.get('/', (req, res) => {
 
 /* Books */
 
-app.get('/books', (req, res) => {
-    res.status(200).json(books);
+app.get('/books', async (req, res) => {
+    res.status(200).json(await books.find());
 });
 
 app.post('/books', (req, res) => {
