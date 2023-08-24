@@ -2,7 +2,12 @@ import books from "../models/Book.js";
 
 class BookController {
     static getAll = async (req, res) => {
-        res.status(200).json(await books.find())
+        
+        try {
+            res.status(200).json(await books.find().populate('author').exec())
+        } catch(error) {
+            res.status(400).send({ message: error.message })
+        }
     }
 
     static getById = async (req, res) => {
