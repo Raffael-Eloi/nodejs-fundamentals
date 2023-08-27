@@ -1,5 +1,8 @@
 FROM node:18
 WORKDIR /app-node-library
+ARG PORT_BUILD=4000
+ENV PORT=$PORT_BUILD
+EXPOSE $PORT_BUILD
 COPY . .
 RUN npm install
 ENTRYPOINT npm run dev
